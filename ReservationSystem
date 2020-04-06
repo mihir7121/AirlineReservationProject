@@ -1,0 +1,2309 @@
+/*Data type/class   variable   Use
+object
+Scanner             sc          Scanner object used to input the data through keyborad(System.in)
+int                 meal        to input meal(yes or no)
+int                 p           counter for pnr
+String              timea[]     to store the time of different PNR's
+int                 c           to input PNR
+int                 pnr_no[]    to store the PNR number
+String              s1          to input all the values
+String              seatb[]     number of seats and their booking in business class
+String              seate[]     number of seats and their booking economy class 
+String              seatpe[]    number of seats and their booking premium economy class 
+double              fare[]      cal and store Airticket cost(fare inc.tax)
+int                  n          to store the month number
+int(static)         ch          to input the choice in the main menu
+int                 adult[]     to input the number of adults
+int                 child[]     to input the number of children
+int                 infant[]    to input the number of infants
+int                 tc[]        to input and store the travel class
+String              airline[]   to input and store the airline preference
+String              dpcity[]    store departure airport
+int                 d1[]        to store departure airport number
+String              arcity[]    arrival airport
+int                 a[]         to store arrival airport number
+String              time        to input time
+int                 d           to store the day of departure
+int                 y           to store the year of departure
+String              m           to store the month of departure
+String              dep_date[]  to store departure date
+String              month[]     to store the months in a year
+String              airlinep[]  to store the names of airlines
+String              namea[]     to store the names of the adult passengers
+String              namec[]     to store the names of the children passengers
+String              namei[]     to store the names of the infant passengers
+int                 agea[]      to store the age of the adult passengers
+int                 agec[]      to store the age of the child passengers
+int                 agei[]      to store the age of the infant passengers
+String              gendera[]   to store the gender of the adult passengers
+String              genderc[]   to store the gender of the child passengers
+String              genderi[]   to store the gender of the infant passengers
+int                 t           counter for number of bookings
+int                 t1[]        index counter for seats in business class
+int                 t2[]        index counter for seats in economy class
+int                 t3[]        index counter for seats in premium economy class
+ *********************************************************************************************       
+ */
+import java.util.Scanner;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+public class Airticket_Reservation
+{
+    int meal=0;
+    int p=0;//counter for pnr
+    String timea[]=new String[50];
+    int c=0;//to input PNR
+    int pnr_no[]=new int[50];
+    String s1="";  //if enter is input
+    Scanner sc=new Scanner(System.in);    
+    String seatb[]=new String[500];//60   // number of seats and their booking
+    String seate[]=new String[500]; //100
+    String seatpe[]=new String[500]; //60
+    double fare[]=new double[50];
+    int n=0; 
+    static int ch=0;
+    int adult[]=new int[50];
+    int child[]=new int[50];
+    int infant[]=new int[50];    //no. of people
+    int tc[]=new int[50];                        //travel class
+    String airline[]=new String[50];               //airline preference
+    String dpcity[]={"Mumbai","Jaipur","Pune","Varanasi","Kolkata","Chennai","Nagpur","Hyderabad","Kochi","New Delhi"};//departure airport
+    int d1[]=new int[50];                          //to store departure airport number
+    String arcity[]={"Mumbai","Jaipur","Pune","Varanasi","Kolkata","Chennai","Nagpur","Hyderabad","Kochi","New Delhi"};//arrival airport
+    int a[]=new int[50];                           //to sotre arrival airport number
+    String time="";
+    int d=0,y=0;String m="";
+    String dep_date[]=new String[50];              //departure date
+    String month[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+    String airlinep[]={"Spice Jet","IndiGo","Jet Airways","Air India","Go","Air Asia","Jet Lite","QuickJet Express","Taj Air","Air India Express"};
+    String namea[]=new String[50];
+    String namec[]=new String[50];
+    String namei[]=new String[50];
+    int agea[]=new int[50];
+    int agec[]=new int[50];
+    int agei[]=new int[50];
+    String gendera[]=new String[50];
+    String genderc[]=new String[50];
+    String genderi[]=new String[50];
+    int t=0;//counter
+    int t1[]=new int[500];//index counter for seats
+    int t2[]=new int[500];
+    int t3[]=new int[500];
+    int na[]=new int[100];//index counter for number of passengers
+    int nc[]=new int[100];
+    int ni[]=new int[100];
+    int aa[]=new int[100];
+    int ac[]=new int[100];
+    int ai[]=new int[100];
+    int ga[]=new int[100];
+    int gc[]=new int[100];
+    int gi[]=new int[100];
+    int ra=5;
+    int rc=5;
+    int ri=5;
+    int pa=5;
+    int pc=5;
+    int pi=5;
+    int qa=5;
+    int qc=5;
+    int qi=5;
+    Airticket_Reservation()
+    {
+        for(int i=0;i<60;i++)
+            seatb[i]="";
+        for(int i=0;i<100;i++)
+            seate[i]="";
+        for(int i=0;i<60;i++)
+            seatpe[i]="";
+        for(int i=0;i<500;i++)
+            t1[i]=0;
+        for(int i=0;i<500;i++)
+            t2[i]=0;
+        for(int i=0;i<500;i++)
+            t3[i]=0;
+        seatb[0]="A1";seatb[1]="A5";seatb[2]="B6";seatb[3]="C7";seatb[4]="A6";seatb[5]="A2";seatb[6]="A3";seatb[7]="D8";seatb[8]="E6";seatb[9]="F1";
+        fare[0]=4320.00;fare[1]=5320.00;fare[2]=6320.00;fare[3]=2320.00;fare[4]=3320.00;fare[5]=4420.00;fare[6]=4620.00;fare[7]=3100.00;fare[8]=4350.00;fare[9]=3325.00;
+        adult[0]=1;adult[1]=1;adult[2]=1;adult[3]=1;adult[4]=1;adult[5]=1;adult[6]=1;adult[7]=1;adult[8]=1;adult[9]=1;
+        child[0]=1;child[1]=1;child[2]=1;child[3]=1; child[4]=1;child[5]=1;child[6]=1;child[7]=1;child[8]=1;child[9]=1;
+        for(int i=0;i<10;i++)
+            infant[i]=0;    
+        tc[0]=1;tc[1]=1;tc[2]=1;tc[3]=1;tc[4]=1;tc[5]=1;tc[6]=1;tc[7]=1;tc[8]=1;tc[9]=1;
+        timea[0]="14:40 hours";timea[1]="17:40 hours";timea[2]="23:40 hours";timea[3]="22:40 hours";timea[4]="01:20 hours";timea[5]="12:10 hours";timea[6]="20:55 hours";timea[7]="21:10 hours";timea[8]="10:40 hours";timea[9]="18:20 hours";
+        ch=0;    
+        airline[0]="Spice Jet";airline[1]="IndiGo";airline[2]="Jet Airways";airline[3]="Air India";airline[4]="Go";airline[5]="Air Asia";airline[6]="Jet Lite";airline[7]="QuickJet Express";airline[8]="Taj Air";airline[9]="Air India Express";                                   //airline preference
+        d1[0]=2;a[0]=3;d1[1]=5;a[1]=6;d1[2]=5;a[2]=10;d1[3]=6;a[3]=6;d1[4]=5;a[4]=7;d1[5]=8;a[5]=10;
+        d=2;y=2017;String m="February";
+        dep_date[0]="2 February,2017";dep_date[1]="22 February,2017";dep_date[2]="20 March,2017";dep_date[3]="14 February,2017";dep_date[4]="18 February,2017";dep_date[5]="31 May,2017";dep_date[6]="28 April,2017";dep_date[7]="18 March,2017";dep_date[8]="20 April,2017";dep_date[9]="10 March,2017";              //departure date
+        namea[0]="Mihir Nikam";namea[1]="Vinod Nikam";namea[2]="Riya Arbelo";namea[3]="Farhan Akhtar";namea[4]="Sashwat Sam";namea[5]="Akschat Tim";namea[6]="Manoj Gupta";namea[7]="Sahir Nikam";namea[8]="Shital Nikam";namea[9]="Prem Gupta";
+        namec[0]="Sakshi Nikam";namec[1]="Priyansh Phatak";namec[2]="Yash Thakker";namec[3]="Dhruv Yagnik";namec[4]="Ameya Ranade";namec[5]="Nidhi Thak";namec[6]="Sanjana Inamdar";namec[7]="Parth Desai";namec[8]="Sanjana Panda";namec[9]="Azhar Sheikh";
+        agea[0]=30;agea[1]=52;agea[2]=63;agea[3]=37;agea[4]=20;agea[5]=22;agea[6]=28;agea[7]=29;agea[8]=31;agea[9]=33;
+        agec[0]=6;agec[1]=11;agec[2]=7;agec[3]=8;agec[4]=9;agec[5]=9;agec[6]=9;agec[7]=10;agec[8]=11;agec[9]=12;
+        gendera[0]="Male";gendera[1]="Male";gendera[2]="Female";gendera[3]="Male";gendera[4]="Male";gendera[5]="Male";gendera[6]="Male";gendera[7]="Male";gendera[8]="Female";gendera[9]="Male";
+        genderc[0]="Female";genderc[1]="Male";genderc[2]="Male";genderc[3]="Male";genderc[4]="Male";genderc[5]="Female";genderc[6]="Female";genderc[7]="Male";genderc[8]="Female";genderc[9]="Male";
+        pnr_no[0]=1000;
+        pnr_no[1]=1000;
+        pnr_no[2]=1111;
+        pnr_no[3]=1111;
+        pnr_no[4]=2222;
+        pnr_no[5]=2222;
+        t=5;
+    }
+
+    int hour()//to generate the hour number
+    {
+        int l=0;
+        while(true)
+        {
+            double d=Math.random();
+            d=d*100;
+            if(d>0 &&d<24)
+            {
+                l=(int)d;
+                break;
+            }
+            else 
+                continue;
+        }
+        return l;
+    }
+
+    int minutes()//to generate the minutes
+    {
+        int l=0;
+        while(true)
+        {
+            double d=Math.random();
+            d=d*100;
+            if(d>=0 && d<60)
+            {
+                l=(int)d;
+                if(l%5!=0)
+                {
+                    continue;
+                }
+                break;
+            }
+            else 
+                continue;
+        }
+        return l;
+    }
+
+    String main1()
+    {
+        int h=hour();
+        int m=minutes();
+        String minutes="";
+        if(m>=0 && m<=9)
+        {
+            minutes="0"+m+" ";
+        }
+        else
+        {
+            minutes=m+" ";
+        }
+        time=h+":"+minutes+"hours";      
+        return time;
+    }
+
+    void book()
+    {
+        t++;
+        dep();
+        arr();
+        dep_y();
+        dep_m();
+        dep_d();
+        dep_date[t]=d+" "+m+","+y+".";
+        airlinep();
+        timechoice();
+        adult();
+        child();
+        infant();
+        travelclass();
+        passengerdetails();
+        seat();
+        System.out.println("\t**************************************");
+        System.out.println("Would you like to have a meal?\n1.Yes\t2.No");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    meal=Integer.parseInt(s1);
+                if(meal<1 || meal>2)
+                {
+                    System.out.println("Enter between 1 and 2");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid number");
+                continue;
+            }
+            break;
+        }
+        fare();
+        System.out.println("\t**************************************");
+        System.out.println("Flight:      "+dpcity[d1[t]-1]+" to "+arcity[a[t]-1]);
+        System.out.println("Date:        "+dep_date[t]);
+        System.out.println("Time:        "+time);
+        System.out.println("Fare:        Rs."+fare[t]);
+        if(meal==1)
+            System.out.println("Meal:        Yes");
+        else
+            System.out.println("Meal:        No");
+        System.out.println("Are you sure you want to continue with the booking: 1.Yes 2.No");
+        int s;
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    s=Integer.parseInt(s1);
+                if(s<1 || s>2)
+                {
+                    System.out.println("Enter between 1 and 2");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid number");
+                continue;
+            }
+            break;
+        }
+        if(s==1)
+        {
+            System.out.println("Please Wait...PNR is being generated");
+            for(int i=0;i<1000000000;i++);
+            System.out.print("PNR NUMBER for this transaction is: ");
+            while(true)
+            {
+                pnr_no[t]=(int)(Math.random()*10000);
+                if(pnr_no[t]<1000 || pnr_no[t]>9999)
+                    continue;
+                else
+                {
+                    pnr_no[t]=Math.round(pnr_no[t]);
+                    break;
+                }
+            }
+            System.out.println(pnr_no[t]);
+            System.out.println("Your ticket has been booked!!");
+            System.out.println("Enjoy your flight!!");  
+            System.out.println("***************************************************");
+            System.out.print("Redirecting to Main menu");
+            for(long i=1;i<100000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("...");
+                if(i==1800000)
+                    System.out.print("...");
+                if(i==18000000)
+                    System.out.print("...");
+            }
+            System.out.println();
+            choice();
+        }
+        else
+        {
+            t--;
+            System.out.print("Redirecting to Main Menu");
+            for(long i=1;i<100000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("???");
+                if(i==1800000)
+                    System.out.print("???");
+                if(i==18000000)
+                    System.out.print("???");
+            }
+            System.out.println();
+            choice();
+        }
+    }
+
+    void dep()
+    {
+        System.out.println("\tChoose the departure Airport City");
+        for(int i=0;i<10;i++)
+        {
+            System.out.println((i+1)+"."+dpcity[i]);
+        }
+        System.out.println("Enter the choice");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    d1[t]=Integer.parseInt(s1);
+                if(d1[t]<1 || d1[t]>10)
+                {
+                    System.out.println("Enter between 1 and 10");
+                    continue;
+                }
+            }
+            catch(NumberFormatException obj)
+            {
+                System.out.println("Enter a number");
+                continue;
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Invalid Input");
+                System.out.println("Enter again");
+                continue;                
+            }
+            break;
+        }
+    }
+
+    void arr()
+    {
+        System.out.println("\t**************************************");
+        System.out.println("\tChoose the arrival Airport City");
+        for(int i=0;i<10;i++)
+        {
+            System.out.println((i+1)+"."+arcity[i]);
+        }
+        System.out.println("Enter the choice");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    a[t]=Integer.parseInt(s1);
+                if(a[t]==d1[t])
+                {
+                    System.out.println("Both the cities are same");
+                    System.out.println("Enter another city");
+                    continue;
+                }
+                if(a[t]<1 || a[t]>10)
+                {
+                    System.out.println("Enter between 1 and 10");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Invalid Input");
+                System.out.println("Ener again");
+                continue;
+            }
+            break;
+        }
+    }
+
+    void dep_y()
+    { 
+        int k=0;int n;
+        System.out.println("\t**************************************");
+        System.out.println("\tEnter the year of departure");
+        System.out.println("Booking available only till 31st Dec, 2020.");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    y=Integer.parseInt(s1);
+                n=y;k=0;
+                while(n!=0)
+                {
+                    k++;
+                    n/=10;
+                }
+                if((k<4 || k>4))
+                {
+                    System.out.println("Enter a 4 digit number");
+                    continue;
+                }
+                if(y<2017 || y>2020)
+                {
+                    System.out.println("Enter between 2017 and 2020.");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter digits only");
+                System.out.println("Enter again");
+                continue;
+            }
+            break;
+        }
+    }
+
+    void dep_m()
+    {
+        System.out.println("\tEnter the month of departure");
+        for(int i=0;i<12;i++)
+        {
+            System.out.println((i+1)+"."+month[i]);
+        }
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    n=Integer.parseInt(s1);
+                if(n<1 || n>12)
+                {
+                    System.out.println("Enter valid month number");
+                    continue;
+                }
+                if(y<2017 && n<1)
+                {
+                    System.out.println("The date has already passed....Enter valid date");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter a valid month number");
+                continue;
+            }
+            break;
+        }
+        m=month[n-1];
+    }
+
+    void dep_d()
+    {
+        System.out.println("\tEnter the day of departure");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    d=Integer.parseInt(s1);
+                if((n==1 || n==3 || n==5 || n==7 || n==8 || n==10 || n==12))
+                {
+                    if(d<1 || d>31)
+                    {
+                        System.out.println("Enter between 1 and 31");
+                        continue;
+                    }
+                    if(n==1 && d!=31 && y==2017)
+                    {
+                        System.out.println("The day has already passed...Please enter a valid day");
+                        continue;
+                    }
+                }
+                else if(n==4 || n==6 || n==9 || n==11)
+                {
+                    if(d<1 || d>30)
+                    {
+                        System.out.println("Enter between 1 and 30");
+                        continue;
+                    }
+                }
+                else if(n==2)
+                {
+                    if(y==2020)
+                    {
+                        if(d<1 || d>29)
+                        {
+                            System.out.println("Enter between 1 and 29");
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if(d<1 || d>28)
+                        {
+                            System.out.println("Enter between 1 and 28");
+                            continue;
+                        }
+                    }
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter a number");
+                continue;
+            }
+            break;
+        }
+    }
+
+    void timechoice()
+    {
+        System.out.println("\t**************************************");
+        System.out.println("\tThese are the available timings on the given day:");
+        int tch=0;
+        String timing[]=new String[5];
+        for(int i=0;i<5;i++)
+        {
+            timing[i]=main1();
+            System.out.println((i+1)+"."+timing[i]);
+        }
+        System.out.println("Choose one of them");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    tch=Integer.parseInt(s1);
+                if(tch<=5 && tch>=1)
+                {
+                    time=timing[tch-1];  
+                    break;
+                }
+                else
+                {
+                    System.out.println("Enter between 1 and 5");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid choice");
+                continue;
+            }
+        }
+        timea[t]=time;
+    }
+
+    void airlinep()
+    {
+        System.out.println("\t**************************************");
+        System.out.println("\tAvailable Airline on the given day are:");
+        int m=0;
+        String air[]=new String[10];
+        int d=(int)(Math.random()*10);
+        System.out.println("Sr.no.\tAirlines");
+        if(d>5)
+            d=0;
+        for(int i=1;i<=5;i++)
+        {
+            air[i]=airlinep[d+i-1];
+            System.out.println(i+".\t"+airlinep[d+i-1]);
+        }
+        System.out.println("Enter your choice");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    m=Integer.parseInt(s1);
+                if(m<1 || m>5)
+                {
+                    System.out.println("Enter between 1 and 5");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid number");
+                continue;
+            }
+            break;
+        }
+        airline[t]=air[m];
+    }
+
+    void adult()
+    {
+        System.out.println("\t**************************************");
+        System.out.println("Maximum booking =20");int ch=0;
+        System.out.println("Enter the number of adults(12+)");
+        m:
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    adult[t]=Integer.parseInt(s1);
+                if(adult[t]==0)
+                {
+                    System.out.println("There are no Adults...Are you sure?");
+                    System.out.println("1.Yes");
+                    System.out.println("2.No");
+                    while(true)
+                    {
+                        try
+                        {
+                            s1=sc.nextLine();
+                            if(s1.length()==0)
+                            {
+                                System.out.println("Please enter valid data");
+                                continue;
+                            }
+                            else
+                                ch=Integer.parseInt(s1);
+                            if(ch==1)
+                                break;
+                            else if(ch==2)
+                            {
+                                System.out.println("Enter the number of adults again");
+                                continue m;
+                            }
+                            else
+                            {
+                                System.out.println("Enter 1 or 2");
+                                continue;
+                            }
+                        }
+                        catch(Exception obj)
+                        {
+                            System.out.println("Enter valid input");
+                            continue;
+                        }
+                    }
+                }
+                if(adult[t]>20)
+                {
+                    System.out.println("Cannot book more than 20 in one booking");
+                    continue;
+                }
+                if(adult[t]<0)
+                {
+                    System.out.println("Please enter a valid number");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid number");
+                continue;
+            }
+            break;
+        }
+    }
+
+    void child()
+    {
+        System.out.println("\t**************************************");
+        System.out.println("Enter the number of children(6-11)");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    child[t]=Integer.parseInt(s1);
+                if((adult[t]+child[t])>20)
+                {
+                    System.out.println("Cannot book the seats for these many children(Max.book=20)");
+                    System.out.println("Enter again");
+                    continue;
+                }
+                if(child[t]<0)
+                {
+                    System.out.println("Please enter a valid number");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid number");
+                continue;
+            }
+            break;
+        }
+    }       
+
+    void infant()
+    {
+        System.out.println("\t**************************************");
+        if(adult[t]>0)
+        {
+            System.out.println("Enter the number of infants(<=5)");
+            while(true)
+            {
+                try
+                {
+                    s1=sc.nextLine();
+                    if(s1.length()==0)
+                    {
+                        System.out.println("Please enter valid data");
+                        continue;
+                    }
+                    else
+                        infant[t]=Integer.parseInt(s1);
+                    if(adult[t]>=20 || child[t]>=20 || (adult[t]+child[t])>=20)
+                    {
+                        System.out.println("No more tickets can be booked");
+                        break;
+                    }
+                    if((adult[t]+child[t]+infant[t])>20)
+                    {
+                        System.out.println("Only 20 seats can be booked in 1 booking");
+                        System.out.println("Enter again");
+                        continue;
+                    }
+                    if(child[t]<0)
+                    {
+                        System.out.println("Please enter a valid number");
+                        continue;
+                    }
+                }
+                catch(Exception obj)
+                {
+                    System.out.println("Enter valid number");
+                    continue;
+                }
+                break;
+            }
+        }
+        else
+        {
+            System.out.println("Infants are not allowed to travel without adults");
+            if(child[t]==0)
+            {
+                System.out.println("There are no children so no booking can be done");
+                System.out.println("Redirecting to Main Menu...");
+                for(int i=1;i<1000000;i++)
+                {
+                    for(int j=1;j<100;j++)
+                    {}
+                }
+                choice();
+            }
+        }
+    }
+
+    void travelclass()
+    {
+        System.out.println("\t**************************************");
+        System.out.print("Choose the class of travel-->");
+        System.out.println("1.Business \t 2.Economy \t 3.Premium Economy");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    tc[t]=Integer.parseInt(s1);
+                if(tc[t]<1 || tc[t]>3)
+                {
+                    System.out.println("Enter between 1 and 3");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Wrong choice...Enter again");
+                continue;
+            }
+            break;
+        }        
+    }
+
+    void passengerdetails()
+    {
+        System.out.println("\t**************************************");
+        name();
+        age();
+        gender();
+    }
+
+    void name()
+    {
+        System.out.println("Enter the name of the passengers");int k=0;
+        if(adult[t]>0)
+        {
+            System.out.println("Adult:");
+            for(int i=t;i<t+adult[t];)
+            {
+                k=0;na[t]=ra++;
+                s1=sc.nextLine();
+                if(s1.length()==0 || s1.charAt(0)==' ')
+                {
+                    ra--;
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    namea[na[t]]=s1;
+                for(int j=0;j<namea[na[t]].length();j++)
+                {
+                    char c=namea[na[t]].charAt(j);
+                    int d=(int)c;
+                    if(!(Character.isLetter(c)|| Character.isWhitespace(c)))
+                    {
+                        k=1;ra--;
+                        break;
+                    }
+                    if(((d<65 || d>90) && (d<97 || d>122) ))
+                    {
+                        if(d==32)
+                            continue;
+                        else
+                        {
+                            ra--;
+                            System.out.println("Name cannot have special characters...Enter again");
+                            continue;
+                        }
+                    }
+                }
+                if(k==1)
+                {
+                    System.out.println("Invalid Input");
+                    System.out.println("Enter again");
+                    continue;
+                }
+                else
+                {
+                    i++;
+                    continue;
+                }
+            }
+        }
+        if(child[t]>0)
+        {
+            System.out.println("Children:");
+            for(int i=t;i<t+child[t];)
+            {
+                k=0;nc[t]=rc++;
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    rc--;
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    namec[nc[t]]=s1;
+                for(int j=0;j<namec[nc[t]].length();j++)
+                {
+                    char c=namec[nc[t]].charAt(j);
+                    int d=(int)c;
+                    if(!(Character.isLetter(c)|| Character.isWhitespace(c)))
+                    {
+                        rc--;k=1;
+                        break;
+                    }
+                    if(((d<65 || d>90) && (d<97 || d>122)))
+                    {
+                        if(d==32)
+                            continue;
+                        else
+                        {
+                            rc--;
+                            System.out.println("Name cannot have special characters...Enter again");
+                            continue;
+                        }
+                    }
+                }
+                if(k==1)
+                {
+                    System.out.println("Invalid Input");
+                    System.out.println("Enter again");
+                    continue;
+                }
+                else
+                {
+                    i++;
+                    continue;
+                }
+            }
+        }
+        if(infant[t]>0)
+        {
+            System.out.println("Infant:");
+            for(int i=t;i<t+infant[t];)
+            {
+                k=0;ni[t]=ri++;
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    ri--;
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    namei[ni[t]]=s1;
+                for(int j=0;j<namei[ni[t]].length();j++)
+                {
+                    char c=namei[ni[t]].charAt(j);
+                    int d=(int)c;
+                    if(!(Character.isLetter(c)|| Character.isWhitespace(c)))
+                    {
+                        k=1;ri--;
+                        break;
+                    }
+                    if(((d<65 || d>90) && (d<97 || d>122)))
+                    {
+                        if(d==32)
+                            continue;
+                        else
+                        {
+                            ri--;
+                            System.out.println("Name cannot have special characters...Enter again");
+                            continue;
+                        }
+                    }
+                }
+                if(k==1)
+                {
+                    System.out.println("Invalid Input");
+                    System.out.println("Enter again");
+                    continue;
+                }
+                else
+                {
+                    i++;
+                    continue;
+                }
+            }
+        }
+    }
+
+    void age()
+    {
+        System.out.println("Enter the corresponding age of the passengers");
+        if(adult[t]>0)
+        {
+            System.out.println("Adult:");
+            for(int i=t;i<t+adult[t];i++)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        aa[t]=pa++;
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {   pa--;
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            agea[aa[t]]=Integer.parseInt(s1);
+                        if(agea[aa[t]]>90 || agea[aa[t]]<=12)
+                        {
+                            pa--;
+                            System.out.println("Invalid age ");
+                            System.out.println("Enter again");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        pa--;
+                        System.out.println("Enter a number");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+        if(child[t]>0)
+        {
+            System.out.println("Children:");
+            for(int i=t;i<t+child[t];i++)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        ac[t]=pc++;
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            pc--;
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            agec[ac[t]]=Integer.parseInt(s1);
+                        if(agec[ac[t]]>12|| agec[ac[t]]<6)
+                        {
+                            pc--;
+                            System.out.println("Invalid age");
+                            System.out.println("Enter again");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        pc--;
+                        System.out.println("Enter a number");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+        if(infant[t]>0)
+        {
+            System.out.println("Infant:");
+            for(int i=t;i<t+infant[t];i++)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        ai[t]=pi++;
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            pi--;
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            agei[ai[t]]=Integer.parseInt(s1);
+                        if(agei[ai[t]]>5 || agei[ai[t]]<1)
+                        {
+                            pi--;
+                            System.out.println("Invalid age");
+                            System.out.println("Enter again");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        pi--;
+                        System.out.println("Enter a number");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    void gender()
+    {
+        System.out.println("Enter Gender(1.Male or 2.Female)");
+        if(adult[t]>0)
+        {
+            System.out.println("Adult:");int m=0;
+            for(int i=t;i<t+adult[t];i++)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        ga[t]=qa++;
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            m=Integer.parseInt(s1);
+                        if(m==1)
+                            gendera[ga[t]]="Male";
+                        else if(m==2)
+                            gendera[ga[t]]="Female";
+                        else
+                        {
+                            qa--;
+                            System.out.println("Enter 1 or 2");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        qa--;
+                        System.out.println("Enter valid gender");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+        if(child[t]>0)
+        {
+            System.out.println("Children:");int m=0;
+            for(int i=t;i<t+child[t];i++)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        gc[t]=qc++;
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            m=Integer.parseInt(s1);
+                        if(m==1)
+                            genderc[gc[t]]="Male";
+
+                        else if(m==2)
+                            genderc[gc[t]]="Female";
+                        else
+                        {
+                            qc--;
+                            System.out.println("Enter 1 or 2");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        qc--;
+                        System.out.println("Enter valid gender");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+        if(infant[t]>0)
+        {
+            System.out.println("Infant:");int m=0;
+            for(int i=t;i<t+infant[t];i++)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        gi[t]=qi++;
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            m=Integer.parseInt(s1);
+                        if(m==1)
+                            genderi[gi[t]]="Male";
+                        else if(m==2)
+                            genderi[gi[t]]="Female";
+                        else
+                        {
+                            qi--;
+                            System.out.println("Enter 1 or 2");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        qi--;
+                        System.out.println("Enter valid gender");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    void seat()
+    {
+        System.out.println("**************************************************");
+        int row[]=new int[222];
+        String column[]=new String[222];
+        int d=0;int r=0;
+        System.out.println("\t\t ^  COCKPIT THIS WAY  ^");
+        System.out.println("NOT Booked:?\tBOOKED:?");
+        System.out.println("\t\t\t BUSINESS");
+        for(int i='A';i<='F';i++)
+            System.out.print("\t"+(char)i);
+        System.out.println();
+        for(int i=1;i<11;i++)
+        {
+            System.out.print(i+"\t");
+            for(int j='A';j<='F';j++)
+            {
+                d=(int)(Math.random()*10);
+                if(j=='D')
+                    System.out.print("|\t|");  
+                if(d>=7)
+                {
+                    seatb[t1[t]]=(char)j+""+i;
+                    t1[t]=r++;
+                    if(j=='C')
+                        System.out.print("?");
+                    else
+                        System.out.print("?\t");
+                }
+                else
+                {
+                    if(j=='C')
+                        System.out.print("?");
+                    else
+                        System.out.print("?\t");
+                }
+            }
+            System.out.println();
+        }
+        r=0;
+        System.out.println("________________________________________________________");
+        for(long i=1;i<100000000;i++)
+        {}
+        System.out.println("\t\t\t Economy");
+        for(int i=11;i<28;i++)
+        {
+            System.out.print(i+"\t");
+            for(int j='A';j<='F';j++)
+            {
+                d=(int)(Math.random()*10);
+                if(j=='D')
+                    System.out.print("|\t|");  
+                if(d>=7)
+                {
+                    seate[t2[t]]=(char)j+""+i;
+                    t2[t]=r++;
+                    if(j=='C')
+                        System.out.print("?");
+                    else
+                        System.out.print("?\t");
+                }
+                else
+                {
+                    if(j=='C')
+                        System.out.print("?");
+                    else
+                        System.out.print("?\t");
+                }
+            }
+            System.out.println();
+        }
+        r=0;
+        System.out.println("________________________________________________________");
+        for(long i=1;i<100000000;i++){}
+        System.out.println("\t\t     Premium Economy");
+        for(int i=28;i<=37;i++)
+        {
+            System.out.print(i+"\t");
+            for(int j='A';j<='F';j++)
+            {
+                d=(int)(Math.random()*10);
+                if(j=='D')
+                    System.out.print("|\t|");  
+                if(d>=7)
+                {
+                    seatpe[t3[t]]=(char)j+""+i;
+                    t3[t]=r++;
+                    if(j=='C')
+                        System.out.print("?");
+                    else
+                        System.out.print("?\t");
+                }
+                else
+                {
+                    if(j=='C')
+                        System.out.print("?");
+                    else
+                        System.out.print("?\t");
+                }
+            }
+            System.out.println();
+        }
+        r=0;
+        System.out.println("________________________________________________________");
+        for(int i='A';i<='F';i++)
+            System.out.print("\t"+(char)i);
+        System.out.println();
+        for(long i=1;i<100000000;i++)
+        {}
+        if(tc[t]==1)
+        {
+            System.out.println("You have chosen business class");
+            b:
+            for(int k=t1[t];k<t1[t]+(adult[t]+child[t]+infant[t]);k++)
+            {
+                if(k==t1[t])
+                    System.out.println("Select the row for "+(k-t1[t]+1)+"st person(Digit)");
+                else if(k==t1[t]+1)
+                    System.out.println("Select the row for "+(k-t1[t]+1)+"nd person(Digit)");
+                else if(k==t1[t]+2)
+                    System.out.println("Select the row for "+(k-t1[t]+1)+"rd person(Digit)");
+                else
+                    System.out.println("Select the row for "+(k-t1[t]+1)+"th person(Digit)");
+                while(true)
+                {
+                    try
+                    {
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            row[k]=Integer.parseInt(s1);
+                        if(row[k]<1 || row[k]>10)
+                        {
+                            System.out.println("Enter between 1 AND 10 as you have chosen business class");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        System.out.println("Enter a valid number");
+                        continue;
+                    }
+                    break;
+                }
+                System.out.println("Select the column(Alphabet)");
+                while(true)
+                {
+                    try
+                    {
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                        {
+                            if(s1.length()>1)
+                            {
+                                System.out.println("Please enter a single alphabet");
+                                continue;
+                            }
+                            else
+                                column[k]=s1;
+                        }
+                        column[k]=column[k].toUpperCase();
+                        char c=column[k].charAt(0);
+                        if(Character.isDigit(c) || Character.isWhitespace(c))
+                        {
+                            System.out.println("Enter a letter");  
+                            continue;
+                        }
+                        else if((int)c<65 || (int)c>70)
+                        {
+                            System.out.println("Enter between A and F");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        System.out.println("Enter a valid alphabet");
+                        continue;
+                    }
+                    break;
+                }
+                column[k]=column[k].toUpperCase();
+                for(int i=0;i<t1[t];i++)
+                {
+                    if((column[k]+""+row[k]).equals(seatb[i]))
+                    {
+                        System.out.println("The seat is already booked");
+                        System.out.println("Choose another seat");
+                        k--;
+                        continue b;
+                    }
+                    for(int l=t1[t];l<t1[t]+(adult[t]+child[t]+infant[t]);l++)//k=adult+child+infant
+                    {
+                        if((column[k]+""+row[k]).equals(seatb[l]))
+                        {
+                            System.out.println("Seat is booked");
+                            System.out.println("Book another");
+                            k--;
+                            continue b;
+                        }
+                    }
+                }
+                seatb[k]=column[k]+""+row[k];
+                System.out.println(seatb[k]);
+            }
+        }
+        if(tc[t]==2)
+        {
+            System.out.println("You have chosen economy class");
+            b:
+            for(int k=t2[t];k<t2[t]+(adult[t]+child[t]+infant[t]);k++)
+            {
+                if(k==t2[t])
+                    System.out.println("Select the row for "+(k-t2[t]+1)+"st person(Digit)");
+                else if(k==t2[t]+1)
+                    System.out.println("Select the row for "+(k-t2[t]+1)+"nd person(Digit)");
+                else if(k==t2[t]+2)
+                    System.out.println("Select the row for "+(k-t2[t]+1)+"rd person(Digit)");
+                else
+                    System.out.println("Select the row for "+(k-t2[t]+1)+"th person(Digit)");
+                while(true)
+                {
+                    try
+                    {
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            row[k]=Integer.parseInt(s1);                        
+                        if(row[k]<11 || row[k]>27)
+                        {
+                            System.out.println("Enter between 11 AND 27 as you have chosen economy class");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        System.out.println("Enter a valid number");
+                        continue;
+                    }
+                    break;
+                }
+                System.out.println("Select the column(Alphabet)");
+                while(true)
+                {
+                    try
+                    {
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                        {
+                            if(s1.length()>1)
+                            {
+                                System.out.println("Please enter a single alphabet");
+                                continue;
+                            }
+                            else
+                                column[k]=s1;
+                        }
+                        column[k]=column[k].toUpperCase();
+                        char c=column[k].charAt(0);
+                        if(Character.isDigit(c) || Character.isWhitespace(c))
+                        {
+                            System.out.println("Enter a letter");  
+                            continue;
+                        }
+                        else if((int)c<65 || (int)c>70)
+                        {
+                            System.out.println("Enter between A and F");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        System.out.println("Enter a valid alphabet");
+                        continue;
+                    }
+                    break;
+                }
+                for(int i=0;i<t2[t];i++)
+                {
+                    if((column[k]+""+row[k]).equals(seate[i]))
+                    {
+                        System.out.println("The seat is already booked");
+                        System.out.println("Choose another seat");
+                        k--;
+                        continue b;
+                    }
+                    for(int l=t2[t];l<t2[t]+(adult[t]+child[t]+infant[t]);l++)//k=adult+child+infant
+                    {
+                        if((column[k]+""+row[k]).equals(seate[l]))
+                        {
+                            System.out.println("Seat booked");
+                            k--;
+                            continue b;
+                        }
+                    }
+                }
+                seate[k]=column[k]+""+row[k];
+                System.out.println(seate[k]);
+            }
+        }
+        if(tc[t]==3)
+        {
+            System.out.println("You have chosen premium economy class");
+            b:
+            for(int k=t3[t];k<t3[t]+(adult[t]+child[t]+infant[t]);k++)
+            {
+                if(k==t3[t])
+                    System.out.println("Select the row for "+(k-t3[t]+1)+"st person(Digit)");
+                else if(k==t3[t]+1)
+                    System.out.println("Select the row for "+(k-t3[t]+1)+"nd person(Digit)");
+                else if(k==t3[t]+2)
+                    System.out.println("Select the row for "+(k-t3[t]+1)+"rd person(Digit)");
+                else
+                    System.out.println("Select the row for "+(k-t3[t]+1)+"th person(Digit)");
+                while(true)
+                {
+                    try
+                    {
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                            row[k]=Integer.parseInt(s1);
+                        if(row[k]<28 || row[k]>37)
+                        {
+                            System.out.println("Enter between 28 AND 37 as you have chosen premium economy class");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        System.out.println("Enter a valid number");
+                        continue;
+                    }
+                    break;
+                }
+                System.out.println("Select the column(Alphabet)");
+                while(true)
+                {
+                    try
+                    {
+                        s1=sc.nextLine();
+                        if(s1.length()==0)
+                        {
+                            System.out.println("Please enter valid data");
+                            continue;
+                        }
+                        else
+                        {
+                            if(s1.length()>1)
+                            {
+                                System.out.println("Please enter a single alphabet");
+                                continue;
+                            }
+                            else
+                                column[k]=s1;
+                        }
+                        column[k]=column[k].toUpperCase();
+                        char c=column[k].charAt(0);
+                        if(Character.isDigit(c) || Character.isWhitespace(c))
+                        {
+                            System.out.println("Enter a letter");  
+                            continue;
+                        }
+                        else if((int)c<65 || (int)c>70)
+                        {
+                            System.out.println("Enter between A and F");
+                            continue;
+                        }
+                    }
+                    catch(Exception obj)
+                    {
+                        System.out.println("Enter a valid alphabet");
+                        continue;
+                    }
+                    break;
+                }
+                column[k]=column[k].toUpperCase();
+                for(int i=0;i<t3[t];i++)
+                {
+                    if((column[k]+""+row[k]).equals(seatpe[i]))
+                    {
+                        System.out.println("The seat is already booked");
+                        System.out.println("Choose another seat");
+                        k--;
+                        continue b;
+                    }
+                    for(int l=t3[t];l<t3[t]+(adult[t]+child[t]+infant[t]);l++)//k=adult+child+infant
+                    {
+                        if((column[k]+""+row[k]).equals(seatpe[l]))
+                        {
+                            System.out.println("Seat booked");
+                            k--;
+                            continue b;
+                        }
+                    }
+                }
+                seatpe[k]=column[k]+""+row[k];
+                System.out.println(seatpe[k]);
+            }
+        }
+    }
+
+    void fare()
+    {
+        System.out.println("\t**************************************");
+        System.out.println("         Fare of the total journey      ");
+        if(tc[t]==1)
+        {
+            fare[t]=0.0;        
+            fare[t]+=adult[t]*3500;
+            fare[t]+=child[t]*2000;
+            fare[t]+=infant[t]*1000;
+            System.out.println("The fare :                    Rs."+fare[t]);
+            System.out.println("Service and Air Tax :         12.25%");
+            System.out.println("Swaatch Bhaarat Abhyiyan Cess:0.5%");
+            if(meal==1)
+            {
+                System.out.println("Meal cost=                    Rs.150/-");
+                fare[t]+=150;
+            }
+            fare[t]+=12.25/100*fare[t];
+            fare[t]+=0.5/100*fare[t];
+            fare[t]=Math.round(fare[t]);System.out.println("___________________________________________");
+            System.out.println("Final price :                 Rs."+(fare[t]));   
+        }
+        else if(tc[t]==2)
+        {
+            fare[t]=0.0;        
+            fare[t]=fare[t]+(adult[t]*2000);
+            fare[t]=fare[t]+(child[t]*1000);
+            fare[t]=fare[t]+(infant[t]*450);
+            System.out.println("The fare =                    Rs. "+fare[t]);
+            System.out.println("Service and Air Tax=          12.25%");
+            System.out.println("Swaatch Bhaarat Abhyiyan Cess=0.5%");
+            if(meal==1)
+            {
+                System.out.println("Meal cost=                    Rs.150/-");
+                fare[t]+=150;
+            }
+            fare[t]+=12.25/100*fare[t];
+            fare[t]+=0.5/100*fare[t];
+            fare[t]=Math.round(fare[t]);System.out.println("___________________________________________");
+            System.out.println("Final price =                 Rs. "+fare[t]);   
+        }
+        else if(tc[t]==3)
+        {
+            fare[t]=0.0;        
+            fare[t]=fare[t]+(adult[t]*2500);
+            fare[t]=fare[t]+(child[t]*1500);
+            fare[t]=fare[t]+(infant[t]*750);
+            System.out.println("The fare =                    Rs. "+fare[t]);
+            System.out.println("Service and Air Tax=          12.25%");
+            System.out.println("Swaatch Bhaarat Abhyiyan Cess=0.5%");
+            if(meal==1)
+            {
+                System.out.println("Meal cost=                    Rs.150/-");
+                fare[t]+=150;
+            }
+            fare[t]+=12.25/100*fare[t];
+            fare[t]+=0.5/100*fare[t];
+            fare[t]=Math.round(fare[t]);
+            System.out.println("___________________________________________");
+            System.out.println("Final price =                 Rs. "+fare[t]);   
+        }
+    }
+
+    void ticket()
+    {
+        System.out.println("Please enter your PNR number(4-Digit)");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    c=Integer.parseInt(s1);
+                if(c<1000 || c>9999)
+                {
+                    System.out.println("Enter a 4 digit number");continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter a number");
+                continue;
+            }
+            break;
+        }
+        int k=0;
+        for(int i=0;i<20;i++)
+        {
+            if(c==pnr_no[i])
+            {
+                k=1;p=i;break;
+            }
+        }
+        if(k==1 && p<6)
+
+        {
+            System.out.println("\t\t\t*************************************************************************");
+            System.out.println("\t\t\t20/01/2017\t\t\t\t\t\t\t12:24:46");
+            System.out.println("\t\t\t*************************************************************************");
+            System.out.print("\t\t\tDeparture airport:"+dpcity[d1[p]-1]);
+            System.out.println("\t\t\tArrival Airport:"+arcity[a[p]-1]);
+            System.out.println("\t\t\tDate of departure:"+dep_date[p]);
+            System.out.println("\t\t\tNumber of adults:"+adult[p]+"\tchildren:"+child[p]+"\tinfants:"+infant[p]);
+            System.out.print("\t\t\tTime="+timea[p]);
+            System.out.print("\tClass of travel:");
+            System.out.println("Business");
+            System.out.println("\t\t\tAirline:"+airline[p]);
+            System.out.print("\t\t\tSeat Number:");
+            System.out.print(seatb[p]+",");
+            System.out.print(seatb[p+1]);            
+            System.out.println("\tFare:Rs."+fare[p]);
+            for(long i=1;i<100000;i++)
+            {
+                for(int j=1;j<1000;j+=2)
+                {}
+            }       
+            System.out.println("\t\t\t*************************************************************************");
+            System.out.println("Enter 1.Exit or 2.Main Menu");
+            int s;
+            while(true)
+            {
+                try
+                {
+                    s1=sc.nextLine();
+                    if(s1.length()==0)
+                    {
+                        System.out.println("Please enter valid data");
+                        continue;
+                    }
+                    else
+                        s=Integer.parseInt(s1);
+                    if(s<1 || s>2)
+                    {
+                        System.out.println("Enter 1 or 2");
+                        continue;
+                    }
+                }
+                catch(Exception obj)
+                {
+                    System.out.println("Enter a valid number");
+                    continue;
+                }
+                break;    
+            }
+            if(s==1)
+                exit();
+            if(s==2)
+            {
+                System.out.print("Redirecting to Main Menu");
+                for(long i=1;i<=10000000;i++)
+                {
+                    if(i==18000)
+                        System.out.print("???");
+                    if(i==1800000)
+                        System.out.print("???");
+                    if(i==10000000)
+                        System.out.print("???");
+                }
+                System.out.println();
+                choice();
+            }
+        }
+        else if(k==1 && p>5)
+        {
+            System.out.println("\t\t\t*************************************************************************");
+            DateFormat dateFormat=new SimpleDateFormat("\t\t\tdd/MM/yyyy\t\t\t\t\t\t\thh:mm:ss");
+            Date date=new Date();
+            System.out.println(dateFormat.format(date));
+            System.out.println("\t\t\t*************************************************************************");
+            System.out.print("\t\t\tDeparture airport:"+dpcity[d1[p]-1]);
+            System.out.println("\t\t          Arrival Airport:"+arcity[a[p]-1]);
+            System.out.println("\t\t\tDate of departure:"+dep_date[p]);
+            System.out.println("\t\t\tNumber of adults:"+adult[p]+"\t    children:"+child[p]+"\t          infants:"+infant[p]);
+            System.out.print("\t\t\tTime="+timea[p]+"\t");
+            System.out.print("    Class of travel:");
+            if(tc[p]==1)
+                System.out.println("Business");
+            else if(tc[p]==2)
+                System.out.println("Economy");
+            else if(tc[p]==3)
+                System.out.println("Premium Economy");
+            System.out.print("\t\t\tAirline:"+airline[p]);
+            System.out.println("\t    Fare:Rs."+fare[p]);
+            System.out.print("\t\t\tSeat Number:");
+            if(tc[p]==1)
+            {   System.out.print(seatb[t1[p]]);
+                for(int i=t1[p]+1;i<t1[p]+adult[p]+child[p]+infant[p];i++)
+                    System.out.print(","+seatb[i]);
+            }
+            if(tc[p]==2)
+            {
+                System.out.print(seate[t2[p]]);
+                for(int i=t2[p]+1;i<t2[p]+adult[p]+child[p]+infant[p];i++)
+                    System.out.print(","+seate[i]);
+            }
+            if(tc[p]==3)
+            {
+                System.out.print(seatpe[t3[p]]);
+                for(int i=t3[p]+1;i<t3[p]+adult[p]+child[p]+infant[p];i++)
+                    System.out.print(","+seatpe[i]);
+            }
+            System.out.println();
+            System.out.println("\t\t\t*************************************************************************");
+            for(long i=1;i<100000;i++)
+            {
+                for(int j=1;j<1000;j+=2)
+                {}
+            }  
+            System.out.println("Enter 1.Exit or 2.Main Menu");
+            int s;
+            while(true)
+            {
+                try
+                {
+                    s1=sc.nextLine();
+                    if(s1.length()==0)
+                    {
+                        System.out.println("Please enter valid data");
+                        continue;
+                    }
+                    else
+                        s=Integer.parseInt(s1);
+                    if(s<1 || s>2)
+                    {
+                        System.out.println("Enter 1 or 2");
+                        continue;
+                    }
+                }
+                catch(Exception obj)
+                {
+                    System.out.println("Enter a valid number");
+                    continue;
+                }
+                break;    
+            }
+            if(s==1)
+                exit();
+            if(s==2)
+            {
+                System.out.print("Redirecting to Main Menu");
+                for(long i=1;i<=10000000;i++)
+                {
+                    if(i==18000)
+                        System.out.print("???");
+                    if(i==1800000)
+                        System.out.print("???");
+                    if(i==10000000)
+                        System.out.print("???");
+                }
+                System.out.println();
+                choice();
+            }
+        }
+        else
+        {
+            System.out.println("NO such PNR exists!!");
+            System.out.print("Redirecting to Main Menu");
+            for(long i=1;i<=10000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("???");
+                if(i==1800000)
+                    System.out.print("???");
+                if(i==10000000)
+                    System.out.print("???");
+            }
+            System.out.println();
+            choice();
+        }
+    }
+
+    void cancel()
+    {
+        System.out.println("Enter the PNR number of your ticket to be cancelled(4-Digit)");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    c=Integer.parseInt(s1);
+                if(c<1000 || c>9999)
+                {
+                    System.out.println("Enter a 4 digit number");continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter a number");
+                continue;
+            }
+            break;
+        }
+        int k=0;
+        for(int i=0;i<10;i++)
+        {
+            if(c==pnr_no[i])
+            {
+                k=1;p=i;break;
+            }
+        }
+        if(k!=1)
+        {
+            System.out.println("No such PNR exists");
+            System.out.print("Redirecting to Main Menu");
+            for(long i=1;i<100000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("???");
+                if(i==1800000)
+                    System.out.print("???");
+                if(i==18000000)
+                    System.out.print("???");
+            }
+            System.out.println();
+            choice();
+        }
+        else
+        {
+            System.out.println("The ticket with PNR number "+c+" is successfully cancelled");
+            if(p<6)
+            {
+                pnr_no[p]=0;
+                pnr_no[p+1]=0;
+            }
+            else
+                pnr_no[p]=0;
+            System.out.print("Redirecting to Main Menu");
+            for(long i=1;i<100000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("???");
+                if(i==1800000)
+                    System.out.print("???");
+                if(i==18000000)
+                    System.out.print("???");
+            }
+            System.out.println();
+            choice();
+        }
+    }
+
+    void view()
+    {
+        System.out.println("Enter the PNR number for viewing the details of the passenger(4-Digit)");
+        while(true)
+        {
+            try
+            {   s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    c=Integer.parseInt(s1);
+                if(c<1000 || c>9999)
+                {
+                    System.out.println("Enter a 4-digit number");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter a digit");
+                continue;
+            }
+            break;
+        }
+        int k=0;
+        for(int i=0;i<20;i++)
+        {
+            if(c==pnr_no[i])
+            {
+                k=1;p=i;break;
+            }
+        }
+        if(k==1)
+        {
+            if(t>5 && p>5)
+            {
+                System.out.println("  Name\t\t\t\tAge\t\tGender");  
+                int r=adult[p]-1;
+                for(int i=p;i<adult[t]+p;i++)
+                {         
+                    System.out.print("  "+namea[na[p]-r]);
+                    for(int j=0;j<30-namea[na[p]-r].length();j++)
+                    {System.out.print(' ');}      
+                    System.out.print(agea[aa[p]-r]+"\t\t");
+                    System.out.print(gendera[ga[p]-r]);
+                    System.out.println();
+                    r--;
+                }   
+                r=child[p]-1;
+                for(int i=p;i<p+child[p];i++)
+                {            
+                    System.out.print("  "+namec[nc[p]-r]);
+                    for(int j=0;j<30-namec[nc[p]-r].length();j++)
+                    {System.out.print(' ');}
+                    System.out.print(agec[ac[p]-r]+"\t\t");
+                    System.out.print(genderc[gc[p]-r]);
+                    System.out.println();
+                    r--;
+                }   
+                r=infant[p]-1;
+                for(int i=p;i<p+infant[p];i++)
+                {            
+                    System.out.print("  "+namei[ni[p]-r]);
+                    for(int j=0;j<30-namei[ni[p]-r].length();j++)
+                    {System.out.print(' ');}
+                    System.out.print(agei[ai[p]-r]+"\t\t");
+                    System.out.print(genderi[gi[p]-r]);
+                    System.out.println();
+                    r--;
+                }
+            }
+            else 
+            {
+                System.out.println("  Name\t\t\t\tAge\t\tGender");
+                System.out.print
+                ("1."+namea[p]+"\t\t\t");
+                System.out.print(agea[p]+"\t\t");
+                System.out.print(gendera[p]);
+                System.out.println();
+                System.out.print("2."+namec[p]+"\t\t\t");
+                System.out.print(agec[p]+"\t\t");
+                System.out.print(genderc[p]);
+                System.out.println();
+            }
+        }
+        else
+        {
+            System.out.println("No such PNR exists");
+            System.out.print("Redirecting to Main Menu");
+            for(long i=1;i<100000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("???");
+                if(i==1800000)
+                    System.out.print("???");
+                if(i==18000000)
+                    System.out.print("???");
+            }
+            System.out.println();
+            choice();
+        }
+        System.out.println("Enter 1.Exit or 2.Main Menu");
+        int s;
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    s=Integer.parseInt(s1);
+                if(s<1 || s>2)
+                {
+                    System.out.println("Enter 1 or 2");
+                    continue;
+                }
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter a valid number");
+                continue;
+            }
+            break;  
+        }
+        if(s==1)
+            exit();
+        else
+        {
+            System.out.print("Redirecting to Main Menu");
+            for(long i=1;i<100000000;i++)
+            {
+                if(i==18000)
+                    System.out.print("???");
+                if(i==1800000)
+                    System.out.print("???");
+                if(i==18000000)
+                    System.out.print("???");
+            }
+            System.out.println();
+            choice();
+        }          
+    }  
+
+    void aboutUs()
+    {
+        System.out.println("NAME:        FLY DOMESTIC AIRLINE RESERVATION");
+        System.out.println("ESTABLISHED: JANUARY 1, 2017");
+        System.out.println("HEADQUARTERS:THANE, MUMBAI, MAHARASHTRA");
+        System.out.println("SLOGAN:      RISE HIGH, FLY HIGH.????????????");
+        System.out.println("USE:         This airline reservation has been created for people to easily book as well");
+        System.out.println("             cancel their ticket. You can see your details by entering the PNR number and");
+        System.out.println("             print tickets as well.");
+        System.out.println("FOUNDER:     MIHIR NIKAM");
+        System.out.print("Redirecting to Main Menu");
+        for(long i=1;i<100000000;i++)
+        {
+            if(i==18000)
+                System.out.print("???");
+            if(i==1800000)
+                System.out.print("???");
+            if(i==18000000)
+                System.out.print("???");
+        }
+        System.out.println();
+        choice();
+    }
+
+    void exit()
+    {
+        System.out.println("\t\t                        THANK YOU FOR USING THE FACILITY                           ");
+        System.out.println("\t\t                         ???ENJOY YOUR DAY AND FLIGHT???                              ");
+        System.out.println("\t\t***********************************************************************************");
+        System.out.println("\t\t* T T T T T H     H     A     N      N K   K       Y      Y    O O    U      U || *");
+        System.out.println("\t\t*     T     H     H    A A    N N    N K K           Y   Y   O     O  U      U || *");
+        System.out.println("\t\t*     T     H H H H   A A A   N  N   N K               Y    O       O U      U || *");
+        System.out.println("\t\t*     T     H     H  A     A  N   N  N K K             Y     O     O   U    U  || *");
+        System.out.println("\t\t*     T     H     H A       A N    N N K   K           Y       O O       U U   ** *");
+        System.out.println("\t\t***********************************************************************************");
+        System.out.println("IMP:Report atleast 45 mins before the departure time");
+        for(long i=0;i<100000000;i++){for(int j=0;j<10;j++){}}
+        System.exit(0);
+    }
+
+    void choice()
+    {        
+        System.out.println("1.Book Tickets");
+        System.out.println("2.Cancel Tickets");      
+        System.out.println("3.View Passenger Details");
+        System.out.println("4.Print Ticket");
+        System.out.println("5.About Us");
+        System.out.println("6.Exit");
+        System.out.println("Enter your choice");
+        while(true)
+        {
+            try
+            {
+                s1=sc.nextLine();
+                if(s1.length()==0)
+                {
+                    System.out.println("Please enter valid data");
+                    continue;
+                }
+                else
+                    ch=Integer.parseInt(s1);
+                if(ch<1 || ch>6)
+                {
+                    System.out.println("Enter between 1 and 6");
+                    continue;
+                }
+            }
+            catch(NumberFormatException obj)
+            {
+                System.out.println("Enter digits only");
+                continue;
+            }
+            catch(Exception obj)
+            {
+                System.out.println("Enter valid number");
+                continue;
+            }
+            break;
+        }
+        if(ch==1)
+            book();
+        if(ch==2)   
+            cancel();
+        if(ch==3)
+            view();
+        if(ch==4)
+            ticket();
+        if(ch==5)
+            aboutUs();
+        if(ch==6)
+            exit();
+        System.out.println("\t\t**************************************");
+    }
+
+    static void main()
+    {
+        for(int j=1;j<1000000000;j++);
+        for(long i=0;i<=70000000;i++)
+        {            
+            if(i==100000)
+                System.out.println("\t\t*W           W  E E E E  L           C C C      O O     M M    M M  E E E E *");
+            if(i==10000000)
+                System.out.println("\t\t* W         W   E        L         C          O     O   M  M  M  M  E       *");
+            if(i==30000000)
+                System.out.println("\t\t*  W   W   W    E E E    L        C          O       O  M    M   M  E E E   *");
+            if(i==50000000)
+                System.out.println("\t\t*   W W W W     E        L         C          O     O   M        M  E       *");
+            if(i==70000000)
+                System.out.println("\t\t*    W   W      E E E E  L L L L     C C C      O O     M        M  E E E E *");
+        }
+        System.out.println("\t\t*****************************************************************************");
+        System.out.println("\t\t                    ???Domestic Air Ticket Reservation???                       ");
+        Airticket_Reservation ob=new Airticket_Reservation();
+        ob.choice();
+    }
+}
+
